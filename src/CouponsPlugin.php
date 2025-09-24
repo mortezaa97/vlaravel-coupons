@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mortezaa97\Shop;
+namespace Mortezaa97\Coupons;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
