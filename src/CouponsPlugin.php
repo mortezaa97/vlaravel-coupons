@@ -7,7 +7,7 @@ namespace Mortezaa97\Coupons;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class CouponPlugin implements Plugin
+class CouponsPlugin implements Plugin
 {
     public static function make(): static
     {
