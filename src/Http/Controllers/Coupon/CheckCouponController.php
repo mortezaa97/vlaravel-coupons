@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mortezaa97\Coupons\Http\Controllers\Coupon;
 
 use App\Http\Controllers\Controller;
@@ -43,7 +45,6 @@ class CheckCouponController extends Controller
                 } else {
                     return $coupon->max_percentage_amount;
                 }
-
             } else {
                 return response()->json(['نوع کد وارد شده صحیح نیست'], 400);
             }
@@ -56,6 +57,5 @@ class CheckCouponController extends Controller
         } else {
             return response()->json(['نوع کد وارد شده صحیح نیست'], 400);
         }
-
     }
 }

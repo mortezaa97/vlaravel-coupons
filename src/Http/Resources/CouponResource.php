@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mortezaa97\Coupons\Http\Resources;
 
 use Illuminate\Http\Request;

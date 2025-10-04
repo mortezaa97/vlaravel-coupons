@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mortezaa97\Coupons;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Mortezaa97\Coupons\Skeleton\SkeletonClass
+ * @see Skeleton\SkeletonClass
  */
 class CouponsFacade extends Facade
 {

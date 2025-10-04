@@ -23,7 +23,7 @@ class CouponsPlugin implements Plugin
     {
         $panel
             ->resources([
-//                'AddressResource' => AddressResource::class,
+                //                'AddressResource' => AddressResource::class,
             ]);
     }
 
