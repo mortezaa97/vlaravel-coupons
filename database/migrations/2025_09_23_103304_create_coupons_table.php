@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
-            $table->smallInteger('type')->default(0); // , ['amount' , 'percentage']
+            $table->smallInteger('type')->default(0); // , [0 => 'amount' , 1 => 'percentage']
             $table->decimal('amount', 19, 0)->nullable();
             $table->unsignedInteger('percentage')->nullable();
             $table->unsignedInteger('max_percentage_amount')->nullable();
