@@ -19,7 +19,19 @@ class CouponsTable
     {
         return $table
             ->columns([
-                // Table columns will be added here
+                \App\Filament\Components\Table\CodeTextColumn::create(),
+                \App\Filament\Components\Table\NameTextColumn::create(),
+                \App\Filament\Components\Table\TypeTextColumn::create(),
+                \App\Filament\Components\Table\AmountTextColumn::create(),
+                \App\Filament\Components\Table\PercentageTextColumn::create(),
+                \App\Filament\Components\Table\MaxPercentageAmountTextColumn::create(),
+                \App\Filament\Components\Table\ExpiredAtTextColumn::create(),
+                \App\Filament\Components\Table\StatusTextColumn::create(Coupon::class),
+                \App\Filament\Components\Table\CreatedByTextColumn::create(),
+                \App\Filament\Components\Table\UpdatedByTextColumn::create(),
+                \App\Filament\Components\Table\DeletedAtTextColumn::create(),
+                \App\Filament\Components\Table\CreatedAtTextColumn::create(),
+                \App\Filament\Components\Table\UpdatedAtTextColumn::create(),
             ])
             ->filters([
                 TrashedFilter::make(),
