@@ -6,6 +6,7 @@ namespace Mortezaa97\Coupons;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Mortezaa97\Coupons\Filament\Resources\Coupons\CouponResource;
 
 class CouponsPlugin implements Plugin
 {
@@ -23,7 +24,7 @@ class CouponsPlugin implements Plugin
     {
         $panel
             ->resources([
-                //                'AddressResource' => AddressResource::class,
+                CouponResource::class,
             ]);
     }
 
