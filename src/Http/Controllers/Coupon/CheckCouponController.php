@@ -33,7 +33,8 @@ class CheckCouponController extends Controller
         }
 
         if (! isset($request->is_service)) {
-            $cart = Auth::guard('api')->user()->active_cart;
+            $user = Auth::guard('api')->user;
+            $cart = $user->carts()->latest();
             $cart->update([
                 'coupon_id' => $coupon->id,
             ]);
