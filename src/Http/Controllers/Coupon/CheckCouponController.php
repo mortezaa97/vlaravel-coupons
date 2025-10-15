@@ -46,7 +46,7 @@ class CheckCouponController extends Controller
                 if ($coupon->max_percentage_amount > $amount) {
                     return response()->json(['type' => $coupon->type, 'amount' => $coupon->amount, 'cart' => $cart->refresh()]);
                 } else {
-                    return $coupon->max_percentage_amount;
+                    return response()->json(['type' => $coupon->type, 'amount' => $coupon->max_percentage_amount, 'cart' => $cart->refresh()]);
                 }
             } else {
                 return response()->json(['نوع کد وارد شده صحیح نیست'], 400);
