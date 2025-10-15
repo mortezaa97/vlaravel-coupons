@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mortezaa97\Coupons\Http\Controllers\Coupon;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class CheckCouponController extends Controller
     public function __invoke(Request $request, Coupon $coupon)
     {
         // check usage2
-        $is_used = Order::where('coupon_id', $coupon->id)->currentStatus('تکمیل شده')->get()->count();
+        $is_used = Order::where('coupon_id', $coupon->id)
+            ->count();
         if (! $coupon->usage && $is_used) {
             return response()->json(['کد تخفیف قبلا استفاده شده است.'], 400);
         }
