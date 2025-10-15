@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mortezaa97\Coupons\Models\Coupon;
+use Mortezaa97\Orders\Http\Resources\CartResource;
 use Mortezaa97\Orders\Models\Order;
 
 class CheckCouponController extends Controller
@@ -32,31 +33,21 @@ class CheckCouponController extends Controller
             }
         }
 
-        if (! isset($request->is_service)) {
-            $user = Auth::guard('api')->user()->load('carts');
-            $cart = $user->carts()->latest()->first();
-            $cart->update([
-                'coupon_id' => $coupon->id,
-            ]);
-        }
+        $user = Auth::guard('api')->user()->load('carts');
+        $cart = $user->carts()->latest()->first();
+        $cart->update([
+            'coupon_id' => $coupon->id,
+        ]);
 
         if ($coupon->percentage) {
-            if (! isset($request->is_service)) {
-                $amount = $cart->total_price * ($coupon->percentage / 100);
-                if ($coupon->max_percentage_amount > $amount) {
-                    return response()->json(['type' => $coupon->type, 'amount' => $coupon->amount, 'cart' => $cart->refresh()]);
-                } else {
-                    return response()->json(['type' => $coupon->type, 'amount' => $coupon->max_percentage_amount, 'cart' => $cart->refresh()]);
-                }
+            $amount = $cart->total_price * ($coupon->percentage / 100);
+            if ($coupon->max_percentage_amount > $amount) {
+                return response()->json(['type' => $coupon->type, 'amount' => $coupon->amount, 'cart' => CartResource::make($cart->refresh())]);
             } else {
-                return response()->json(['نوع کد وارد شده صحیح نیست'], 400);
+                return response()->json(['type' => $coupon->type, 'amount' => $coupon->max_percentage_amount, 'cart' => CartResource::make($cart->refresh())]);
             }
         } elseif ($coupon->amount) {
-            if (isset($request->is_service)) {
-                return response()->json(['type' => $coupon->type, 'amount' => $coupon->amount]);
-            }
-
-            return response()->json(['type' => $coupon->type, 'amount' => $coupon->amount, 'cart' => $cart->refresh()]);
+            return response()->json(['type' => $coupon->type, 'amount' => $coupon->amount, 'cart' => CartResource::make($cart->refresh())]);
         } else {
             return response()->json(['نوع کد وارد شده صحیح نیست'], 400);
         }
