@@ -15,6 +15,11 @@ class Coupon extends Model
     use HasFactory;
     use SoftDeletes;
 
+    const VALID_TYPES = [
+        0 => 'مبلغی',
+        1 => 'درصدی',
+    ];
+
     protected $guarded = [
         'id',
         'created_at',
