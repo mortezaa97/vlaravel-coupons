@@ -4,64 +4,66 @@ declare(strict_types=1);
 
 namespace Mortezaa97\Coupons\Policies;
 
-use App\Models\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Mortezaa97\Coupons\Models\Coupon;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CouponPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
+    use HandlesAuthorization;
+
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $user->hasRole('admin');
+        return $authUser->can('ViewAny:Coupon');
     }
 
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, Coupon $coupon): bool
+    public function view(AuthUser $authUser, Coupon $coupon): bool
     {
-        return $user->id === $coupon->created_by || $user->hasRole('admin');
+        return $authUser->can('View:Coupon');
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $user->hasRole('admin');
+        return $authUser->can('Create:Coupon');
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, Coupon $coupon): bool
+    public function update(AuthUser $authUser, Coupon $coupon): bool
     {
-        return $user->id === $coupon->created_by || $user->hasRole('admin');
+        return $authUser->can('Update:Coupon');
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, Coupon $coupon): bool
+    public function delete(AuthUser $authUser, Coupon $coupon): bool
     {
-        return $user->id === $coupon->created_by || $user->hasRole('admin');
+        return $authUser->can('Delete:Coupon');
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Coupon $coupon): bool
+    public function restore(AuthUser $authUser, Coupon $coupon): bool
     {
-        return $user->hasRole('admin');
+        return $authUser->can('Restore:Coupon');
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Coupon $coupon): bool
+    public function forceDelete(AuthUser $authUser, Coupon $coupon): bool
     {
-        return $user->hasRole('admin');
+        return $authUser->can('ForceDelete:Coupon');
+    }
+
+    public function forceDeleteAny(AuthUser $authUser): bool
+    {
+        return $authUser->can('ForceDeleteAny:Coupon');
+    }
+
+    public function restoreAny(AuthUser $authUser): bool
+    {
+        return $authUser->can('RestoreAny:Coupon');
+    }
+
+    public function replicate(AuthUser $authUser, Coupon $coupon): bool
+    {
+        return $authUser->can('Replicate:Coupon');
+    }
+
+    public function reorder(AuthUser $authUser): bool
+    {
+        return $authUser->can('Reorder:Coupon');
     }
 }

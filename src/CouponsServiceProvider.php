@@ -48,5 +48,7 @@ class CouponsServiceProvider extends ServiceProvider
         $this->app->singleton('coupons', function () {
             return new Coupons;
         });
+
+        
     }
 }

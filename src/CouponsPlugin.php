@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Mortezaa97\Coupons;
 
 use Filament\Contracts\Plugin;
+use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
+use Mortezaa97\Coupons\Filament\Resources\Coupons\CouponResource;
 
 class CouponsPlugin implements Plugin
 {
@@ -23,12 +25,15 @@ class CouponsPlugin implements Plugin
     {
         $panel
             ->resources([
-                //                'AddressResource' => AddressResource::class,
+                CouponResource::class,
+            ])->navigationGroups([
+                NavigationGroup::make('تخفیف ها')
+                    ->icon('heroicon-o-phone')
+                    ->collapsed(),
             ]);
     }
 
     public function boot(Panel $panel): void
     {
-        //
     }
 }
