@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mortezaa97\\Coupons\\": "src"
+            "Mortezaa97\\Coupons\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mortezaa97\\Coupons\\Tests\\": "tests"
+            "Mortezaa97\\Coupons\\Tests\\": "tests/"
         }
     },
     "scripts": {
