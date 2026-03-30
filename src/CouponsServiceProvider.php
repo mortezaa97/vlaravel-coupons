@@ -49,6 +49,7 @@ class CouponsServiceProvider extends ServiceProvider
             return new Coupons;
         });
 
+        $this->app->alias('coupons', Coupons::class);
         
     }
 }

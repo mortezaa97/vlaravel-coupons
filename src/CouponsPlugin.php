@@ -27,7 +27,7 @@ class CouponsPlugin implements Plugin
             ->resources([
                 CouponResource::class,
             ])->navigationGroups([
-                NavigationGroup::make('تخفیف ها')
+                NavigationGroup::make('پنل پیامکی')
                     ->icon('heroicon-o-phone')
                     ->collapsed(),
             ]);
