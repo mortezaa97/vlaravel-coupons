@@ -14,12 +14,12 @@ class CouponPolicy
 
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:Coupon');
+        return true;
     }
 
     public function view(AuthUser $authUser, Coupon $coupon): bool
     {
-        return $authUser->can('View:Coupon');
+        return true;
     }
 
     public function create(AuthUser $authUser): bool

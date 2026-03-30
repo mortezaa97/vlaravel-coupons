@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Mortezaa97\Coupons;
 
+use App\Filament\Resources\Ads\AdResource;
 use Filament\Contracts\Plugin;
 use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Mortezaa97\Coupons\Filament\Resources\Coupons\CouponResource;
 
@@ -25,7 +27,7 @@ class CouponsPlugin implements Plugin
     {
         $panel
             ->resources([
-                CouponResource::class,
+                'CouponResource' => CouponResource::class,
             ])->navigationGroups([
                 NavigationGroup::make('پنل پیامکی')
                     ->icon('heroicon-o-phone')

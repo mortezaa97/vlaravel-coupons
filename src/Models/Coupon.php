@@ -15,6 +15,16 @@ class Coupon extends Model
     use HasFactory;
     use SoftDeletes;
 
+    /**
+     * Coupon type values used by the Filament form.
+     * - 0: amount (fixed amount discount)
+     * - 1: percentage (percentage discount)
+     */
+    public const VALID_TYPES = [
+        0 => 'مبلغ',
+        1 => 'درصد',
+    ];
+
     protected $guarded = [
         'id',
         'created_at',
