@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mortezaa97\Coupons;
 
+use Mortezaa97\Coupons\Concerns\PublishesPackageAssets;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Mortezaa97\Coupons\Models\Coupon;
@@ -11,6 +12,8 @@ use Mortezaa97\Coupons\Policies\CouponPolicy;
 
 class CouponsServiceProvider extends ServiceProvider
 {
+    use PublishesPackageAssets;
+
     /**
      * Bootstrap the application services.
      */
@@ -30,9 +33,7 @@ class CouponsServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/config.php' => config_path('coupons.php'),
             ], 'config');
 
-            $this->publishes([
-                __DIR__ . '/../database/migrations' => database_path('migrations'),
-            ], 'migrations');
+            $this->publishPackageAssets('coupons');
         }
     }
 
